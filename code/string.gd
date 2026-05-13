@@ -1,4 +1,5 @@
 extends Line2D
+class_name string
 @onready var ray = $RayCast2D
 @onready var hitmark = false
 # Called when the node enters the scene tree for the first time.
@@ -18,8 +19,7 @@ func _process(_delta: float) -> void:
 		
 		if target is test:
 			var hit = to_local(ray.get_collision_point())
-			if hitmark == false:
-				hitmark = true
+			if !target.onHit():
+				
 				add_point(hit)
 				print("added")
-	else : hitmark = false  

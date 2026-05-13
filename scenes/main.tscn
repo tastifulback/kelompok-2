@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://bwgiolrkbsuet" path="res://scenes/area_2d.tscn" id="4_jyhfs"]
 
 [node name="Main" type="Node2D" unique_id=5145037]
-position = Vector2(0, 1)
 
 [node name="player" parent="." unique_id=145659285 instance=ExtResource("1_o5qli")]
 process_mode = 1
@@ -16,7 +15,10 @@ position = Vector2(128, 228)
 position = Vector2(129, 304)
 
 [node name="Line2D" parent="." unique_id=755618925 instance=ExtResource("3_sugp2")]
-position = Vector2(4, 6)
+position = Vector2(8, 3)
+
+[node name="Area2D2" parent="." unique_id=1606392763 instance=ExtResource("4_jyhfs")]
+position = Vector2(338, 442)
 
 [node name="Area2D" parent="." unique_id=1174977033 instance=ExtResource("4_jyhfs")]
-position = Vector2(303, 124)
+position = Vector2(169, 221)
