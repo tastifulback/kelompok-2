@@ -16,7 +16,7 @@ func _process(_delta: float) -> void:
 	ray.target_position = to_local(get_global_mouse_position()) - ray.position
 	if ray.is_colliding():
 		var target  = ray.get_collider()
-		
+		print(target)
 		if target is test:
 			var hit = to_local(ray.get_collision_point())
 			if !target.onHit():
