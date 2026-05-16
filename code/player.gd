@@ -34,6 +34,7 @@ func _physics_process(delta: float) -> void:
 func stringSpawn() ->void :
 	var Line : stringer = STRING.instantiate()
 	get_parent().add_child(Line)
+	Line.ray.add_exception(self)
 	Line.global_position = global_position
 	Line.enemies.connect(enemyListFunc)
 	Line.set_point_position(0, Vector2.ZERO) 
@@ -45,8 +46,14 @@ func enemyListFunc(enemy):
 	print(enemyList)
 	
 func enemyKill():
+	var tween= create_tween()
+	tween.set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)	
 	for i in range(enemyList.size()):
-		global_position = enemyList[i]
+		
+		
+		tween.tween_property(self, "global_position", enemyList[i],0.18 )
+		
 	enemyList.clear()
+
 	
 	
