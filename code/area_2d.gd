@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name test
 @onready var area = $Area2D
 @onready var hitmark = false
+
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
