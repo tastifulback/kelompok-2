@@ -18,11 +18,10 @@ shape = SubResource("RectangleShape2D_dqkch")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=912547688]
 
-[node name="dashTime" type="Timer" parent="." unique_id=1657234080]
-process_callback = 0
-wait_time = 0.3
+[node name="dashTime" type="Timer" parent="." unique_id=157817403]
+wait_time = 0.2
 
-[node name="reloadTime" type="Timer" parent="." unique_id=825206100]
+[node name="reloadTime" type="Timer" parent="." unique_id=1693176376]
 
 [connection signal="timeout" from="dashTime" to="." method="_on_dash_time_timeout"]
 [connection signal="timeout" from="reloadTime" to="." method="_on_reload_time_timeout"]

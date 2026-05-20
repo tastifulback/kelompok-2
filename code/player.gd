@@ -1,5 +1,4 @@
 extends CharacterBody2D
-<<<<<<< Updated upstream
 class_name player
 @onready var dashTime = $dashTime
 @onready var reloadTime = $reloadTime
@@ -9,12 +8,6 @@ class_name player
 @onready var enemyN = 0
 @export var SPEED = 300.0
 @export var JUMP_VELOCITY = -400.0
-=======
-
-
-const SPEED = 300.0
-const JUMP_VELOCITY = -500.0
->>>>>>> Stashed changes
 
 
 func _physics_process(delta: float) -> void:
