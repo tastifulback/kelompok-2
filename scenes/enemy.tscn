@@ -29,7 +29,7 @@ scale = Vector2(9, 9)
 target_position = Vector2(13.84, 0)
 
 [node name="chase" type="Timer" parent="." unique_id=960501251]
-wait_time = 7.269
+wait_time = 7.5
 one_shot = true
 
 [node name="waittimer" type="Timer" parent="." unique_id=1833017026]

@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://cbfy84vbtq0nd"]
+
+[ext_resource type="Script" uid="uid://cvr32jsnx21x8" path="res://code/ranged.gd" id="1_lp0c3"]
+[ext_resource type="Texture2D" uid="uid://cnfeweppdkth1" path="res://assets/spriites/icon.svg" id="2_ihxqk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_md0e3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ihxqk"]
+size = Vector2(832, 619)
+
+[node name="enemy" type="CharacterBody2D" unique_id=1698964350]
+script = ExtResource("1_lp0c3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=514605621]
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_md0e3")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1575937655]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ihxqk")
+
+[node name="RayCastDown" type="RayCast2D" parent="Sprite2D" unique_id=9933941]
+position = Vector2(66.00001, 0)
+scale = Vector2(3, 3)
+
+[node name="RayCastWall" type="RayCast2D" parent="Sprite2D" unique_id=227950600]
+scale = Vector2(9, 9)
+target_position = Vector2(13.84, 0)
+
+[node name="chase" type="Timer" parent="." unique_id=960501251]
+wait_time = 7.5
+one_shot = true
+
+[node name="reload" type="Timer" parent="." unique_id=1126361454]
+wait_time = 0.5
+one_shot = true
+
+[node name="detection" type="Area2D" parent="." unique_id=496967204]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection" unique_id=1561675311]
+position = Vector2(-10, -0.5)
+shape = SubResource("RectangleShape2D_ihxqk")
+
+[connection signal="timeout" from="chase" to="." method="_on_chase_timeout"]
+[connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]
+[connection signal="body_exited" from="detection" to="." method="_on_detection_body_exited"]

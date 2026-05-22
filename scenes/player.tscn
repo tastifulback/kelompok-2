@@ -6,9 +6,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
 size = Vector2(28, 40)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
-size = Vector2(29, 39)
-
 [node name="player" type="CharacterBody2D" unique_id=1879648505]
 script = ExtResource("1_g2els")
 
@@ -18,12 +15,6 @@ texture = ExtResource("2_qhqgy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1181278723]
 shape = SubResource("RectangleShape2D_dqkch")
-
-[node name="detected_area" type="Area2D" parent="." unique_id=74633699]
-
-[node name="detected" type="CollisionShape2D" parent="detected_area" unique_id=283577417]
-position = Vector2(0.5, 0.5)
-shape = SubResource("RectangleShape2D_g2els")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=912547688]
 
