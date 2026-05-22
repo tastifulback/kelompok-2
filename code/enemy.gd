@@ -10,7 +10,7 @@ var direction : Vector2
 var right_bounds : Vector2
 var left_bounds : Vector2
 
-@onready var player : CharacterBody2D
+@onready var collider
 @onready var ray_cast_horizontal: RayCast2D = $Sprite2D/RayCastHorizontal
 @onready var ray_cast_down: RayCast2D = $Sprite2D/RayCastDown
 @onready var ray_cast_wall: RayCast2D = $Sprite2D/RayCastWall
@@ -37,8 +37,8 @@ func _physics_process(delta: float) -> void:
 
 func look_for_player():
 	if ray_cast_horizontal.is_colliding():
-		var collider = ray_cast_horizontal.get_collider()
-		if collider == player:
+		collider = ray_cast_horizontal.get_collider()
+		if collider is player:
 			chase_player()
 		elif current_state == states.CHASE:
 			stop_chase()
@@ -51,7 +51,7 @@ func chase_player() -> void:
 
 func stop_chase() -> void:
 	if chase.time_left <= 0:
-		waittimer.start()
+		chase.start()
 
 func handle_movement(delta: float) -> void:
 	if current_state == states.WANDER:
@@ -73,27 +73,30 @@ func change_direction() -> void:
 		else:
 			direction = Vector2(-1, 0)
 	else:
-		direction = (player.position - position).normalized()
+		
+		direction = (collider.position - position).normalized()
 		direction.x = sign(direction.x)
 		direction.y = 0
 		if direction.x > 0:
 			sprite_2d.flip_h = true
 			ray_cast_horizontal.target_position = Vector2(125, 0)
-			ray_cast_wall.target_position = Vector2(125, 0)
+			ray_cast_wall.target_position = Vector2(25, 0)
 			ray_cast_down.position.x = 100
 		else:
 			sprite_2d.flip_h = false
 			ray_cast_horizontal.target_position = Vector2(-125, 0)
-			ray_cast_wall.target_position = Vector2(-125, 0)
+			ray_cast_wall.target_position = Vector2(-25, 0)
 			ray_cast_down.position.x = -100
 
 func flip_enemy():
 	sprite_2d.flip_h = !sprite_2d.flip_h
 	if sprite_2d.flip_h:
 		ray_cast_horizontal.target_position = Vector2(125, 0)
+		ray_cast_wall.target_position = Vector2(25, 0)
 		ray_cast_down.position.x = 100
 	else:
 		ray_cast_horizontal.target_position = Vector2(-125, 0)
+		ray_cast_wall.target_position = Vector2(-25, 0)
 		ray_cast_down.position.x = -100
 
 func handle_gravity(delta: float) -> void:

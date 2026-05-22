@@ -21,14 +21,18 @@ scale = Vector2(3, 3)
 target_position = Vector2(50, 0)
 
 [node name="RayCastDown" type="RayCast2D" parent="Sprite2D" unique_id=9933941]
-position = Vector2(100, 0)
+position = Vector2(66.00001, 0)
 scale = Vector2(3, 3)
 
 [node name="RayCastWall" type="RayCast2D" parent="Sprite2D" unique_id=227950600]
 scale = Vector2(9, 9)
-target_position = Vector2(50, 0)
+target_position = Vector2(13.84, 0)
 
 [node name="chase" type="Timer" parent="." unique_id=960501251]
+wait_time = 7.269
 one_shot = true
 
+[node name="waittimer" type="Timer" parent="." unique_id=1833017026]
+
 [connection signal="timeout" from="chase" to="." method="_on_chase_timeout"]
+[connection signal="timeout" from="waittimer" to="." method="_on_waittimer_timeout"]
