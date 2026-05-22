@@ -35,6 +35,7 @@ func _process(_delta: float) -> void:
 		
 				enemies.emit(hit_global)
 				add_point(to_local(hit_global),lastIndex)
+				ray.add_exception(target)
 				print("added")
 		if target is tiles :
 			if tileHit == false:

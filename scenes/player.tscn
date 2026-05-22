@@ -12,6 +12,10 @@ size = Vector2(29, 39)
 [node name="player" type="CharacterBody2D" unique_id=1879648505]
 script = ExtResource("1_g2els")
 
+[node name="Icon" type="Sprite2D" parent="." unique_id=390944112]
+scale = Vector2(0.21875, 0.3125)
+texture = ExtResource("2_qhqgy")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1181278723]
 shape = SubResource("RectangleShape2D_dqkch")
 
@@ -21,8 +25,11 @@ shape = SubResource("RectangleShape2D_dqkch")
 position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_g2els")
 
-[node name="Icon" type="Sprite2D" parent="." unique_id=390944112]
-scale = Vector2(0.21875, 0.3125)
-texture = ExtResource("2_qhqgy")
-
 [node name="Camera2D" type="Camera2D" parent="." unique_id=912547688]
+
+[node name="reloadTime" type="Timer" parent="." unique_id=295764854]
+
+[node name="dashTime" type="Timer" parent="." unique_id=83906056]
+
+[connection signal="timeout" from="reloadTime" to="." method="_on_reload_time_timeout"]
+[connection signal="timeout" from="dashTime" to="." method="_on_dash_time_timeout"]
