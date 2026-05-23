@@ -5,8 +5,9 @@
 [node name="Line2D" type="Line2D" unique_id=755618925]
 position = Vector2(-1.1383346, 0)
 scale = Vector2(0.07074722, 1)
-points = PackedVector2Array(0, 0, 29, 0)
+points = PackedVector2Array(0, 0, 30.224998, 0)
 width = 1.225
+default_color = Color(1.7136636, 0, 0, 1)
 script = ExtResource("1_o0nmj")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=1995574834]
