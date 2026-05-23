@@ -6,20 +6,25 @@ class_name player
 @onready var STRING = preload("uid://dq7vh3iffl7ms")
 @onready var enemyList = PackedVector2Array([])
 @onready var enemyN = 0
-@export var SPEED = 300.0
-@export var JUMP_VELOCITY = -400.0
+@export var SPEED = 350.0
+@export var JUMP_VELOCITY = -500.0
+@onready var dashAllow : bool = true
 
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
+	if is_on_floor():
+		dashAllow = true
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		
+		
 	# Handle jump.
 	if Input.is_action_just_pressed("shift"):
-		if dashTime.is_stopped():
+		if dashTime.is_stopped() and dashAllow:
 			SPEED *= 3
 			dashTime.start()
+			dashAllow = false
 	if Input.is_action_just_pressed("w") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	if Input.is_action_just_pressed("s") and !is_on_floor():
