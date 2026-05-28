@@ -102,7 +102,7 @@ func handle_gravity(delta: float) -> void:
 func bulletspawn() -> void:
 	var bull : Bullet = BULLET.instantiate()
 	bull.position = self.position
-	bull.dirr = collider.position
+	bull.dirr = to_local(collider.position)
 	get_parent().add_child(bull)
 	
 	

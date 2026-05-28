@@ -1,17 +1,11 @@
-extends Area2D
-class_name Bullet
-@export var dirr : Vector2
+extends StaticBody2D
+class_name hook
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	position += dirr / 12
-
-
-func _on_body_entered(body: Node2D) -> void:
-	if  !body is ranged: 
-		queue_free()
+	pass
