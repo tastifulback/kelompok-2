@@ -9,7 +9,7 @@ var GRAVITY : float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var direction : Vector2
 var right_bounds : Vector2
 var left_bounds : Vector2
-
+@onready var hitmark : bool = false
 @onready var BULLET = preload("uid://ds8gin3qog4x5")
 @onready var collider
 
@@ -19,6 +19,7 @@ var left_bounds : Vector2
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var reload: Timer = $reload
 @onready var chase: Timer = $chase
+signal dead
 
 enum states {
 	WANDER,
@@ -102,7 +103,8 @@ func handle_gravity(delta: float) -> void:
 func bulletspawn() -> void:
 	var bull : Bullet = BULLET.instantiate()
 	bull.position = self.position
-	bull.dirr = to_local(collider.position)
+	bull.look_at(collider.position)
+	bull.dirr = to_global(collider.position)	
 	get_parent().add_child(bull)
 	
 	
@@ -121,3 +123,17 @@ func _on_detection_body_entered(body: Node2D) -> void:
 func _on_detection_body_exited(body: Node2D) -> void:
 	if body is player:
 		stop_chase()
+func onHit() -> bool:
+	if hitmark == false:
+		hitmark = true
+		return false
+	else:
+		return true
+		
+	
+
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	if body is player:
+		emit_signal("dead")
+		queue_free()

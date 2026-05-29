@@ -24,7 +24,7 @@ func _process(_delta: float) -> void:
 	if ray.is_colliding():
 		var target  = ray.get_collider()
 		print(target)
-		if target is test:
+		if target is ranged or target is hook:
 			 
 			var hit_global = ray.get_collision_point()
 			

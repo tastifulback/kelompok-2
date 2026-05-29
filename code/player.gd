@@ -9,7 +9,8 @@ class_name player
 @export var SPEED = 350.0
 @export var JUMP_VELOCITY = -500.0
 @onready var dashAllow : bool = true
-
+@onready var respawn : Vector2
+signal dead
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -31,13 +32,16 @@ func _physics_process(delta: float) -> void:
 		velocity.y = -JUMP_VELOCITY
 	if Input.is_action_just_pressed("attack"):
 		if reloadTime.is_stopped():
+			Engine.time_scale = 0.0
 			stringSpawn()
 			
 		
 	if Input.is_action_just_released("attack"):
+		Engine.time_scale = 1.0
 		reloadHowMany -= int(enemyList.size())
 		reloadTime.start()
 		enemyKill()
+		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("a", "d")
@@ -78,6 +82,8 @@ func enemyKill():
 
 
 
+func respawnPlace(place : Vector2) -> void:
+	respawn = place
 
 
 func _on_dash_time_timeout() -> void:
@@ -96,3 +102,13 @@ func _on_reload_time_timeout() -> void:
 		reloadTime.stop()
 		reloadHowMany = 5
 		
+
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	if area is checkPoint:
+		area.currCheckpoint.connect(respawnPlace)
+	if area is Bullet or area is deadzone:
+		reloadHowMany = 5
+		reloadTime.stop()
+		emit_signal("dead")
+		position = respawn

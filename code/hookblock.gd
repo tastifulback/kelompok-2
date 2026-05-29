@@ -1,11 +1,19 @@
 extends StaticBody2D
 class_name hook
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+
+@onready var hitmark = false
+func _physics_process(delta: float) -> void:
+	if Input.is_action_just_released("attack"):
+		hitmark = false
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+
+func onHit() -> bool:
+	if hitmark == false:
+		hitmark = true
+		return false
+	else:
+		return true
+		
+	

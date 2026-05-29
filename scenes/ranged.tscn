@@ -3,13 +3,22 @@
 [ext_resource type="Script" uid="uid://cvr32jsnx21x8" path="res://code/ranged.gd" id="1_lp0c3"]
 [ext_resource type="Texture2D" uid="uid://cnfeweppdkth1" path="res://assets/spriites/icon.svg" id="2_ihxqk"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_md0e3"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ihxqk"]
 size = Vector2(832, 619)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_md0e3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lp0c3"]
+size = Vector2(65, 66)
+
 [node name="enemy" type="CharacterBody2D" unique_id=1698964350]
 script = ExtResource("1_lp0c3")
+
+[node name="detection" type="Area2D" parent="." unique_id=496967204]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection" unique_id=1561675311]
+position = Vector2(-10, -0.5)
+shape = SubResource("RectangleShape2D_ihxqk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=514605621]
 scale = Vector2(3, 3)
@@ -35,12 +44,13 @@ one_shot = true
 wait_time = 0.5
 one_shot = true
 
-[node name="detection" type="Area2D" parent="." unique_id=496967204]
+[node name="hitbox" type="Area2D" parent="." unique_id=1896485314]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="detection" unique_id=1561675311]
-position = Vector2(-10, -0.5)
-shape = SubResource("RectangleShape2D_ihxqk")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" unique_id=797164497]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_lp0c3")
 
-[connection signal="timeout" from="chase" to="." method="_on_chase_timeout"]
 [connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]
 [connection signal="body_exited" from="detection" to="." method="_on_detection_body_exited"]
+[connection signal="timeout" from="chase" to="." method="_on_chase_timeout"]
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

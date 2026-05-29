@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://rbwxvca4sm5f" path="res://code/string.gd" id="1_o0nmj"]
 
 [node name="Line2D" type="Line2D" unique_id=755618925]
+process_mode = 1
 position = Vector2(-1.1383346, 0)
 scale = Vector2(0.07074722, 1)
 points = PackedVector2Array(0, 0, 30.224998, 0)

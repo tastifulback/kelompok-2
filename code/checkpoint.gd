@@ -1,19 +1,22 @@
 extends Area2D
-class_name Bullet
-@export var dirr : Vector2
+class_name checkPoint
 
+@onready var Currpos : Vector2
+@onready var sprite = $AnimatedSprite2D
+signal currCheckpoint(Currpos)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	sprite.play("default")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	
-	
-	position += transform.x * 1000 * delta
+	pass
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if  !body is ranged: 
-		queue_free()
+	if body is player:
+		sprite.play("red")
+		Currpos = body.position
+		currCheckpoint.emit(Currpos)
+	

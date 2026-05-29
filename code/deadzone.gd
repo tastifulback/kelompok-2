@@ -1,19 +1,11 @@
 extends Area2D
-class_name Bullet
-@export var dirr : Vector2
+class_name deadzone
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	
-	
-	position += transform.x * 1000 * delta
-
-
-func _on_body_entered(body: Node2D) -> void:
-	if  !body is ranged: 
-		queue_free()
+	pass

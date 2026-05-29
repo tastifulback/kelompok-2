@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b63oexb5fadob"]
+
+[ext_resource type="Script" uid="uid://d0fximi623skf" path="res://code/ranged_spawner.gd" id="1_nc7or"]
+
+[node name="rangedSpawner" type="Node2D" unique_id=1590068122]
+script = ExtResource("1_nc7or")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=377841929]

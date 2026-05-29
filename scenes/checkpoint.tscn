@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://binl2bf14o0rc"]
+
+[ext_resource type="Script" uid="uid://chxqys1qfb341" path="res://code/checkpoint.gd" id="1_vsimk"]
+[ext_resource type="Texture2D" uid="uid://dfqswkswoyvhe" path="res://assets/spriites/gdgamelab gamejam whitecheckpoint.png" id="2_yqsag"]
+[ext_resource type="Texture2D" uid="uid://dvfs8c0c5dot" path="res://assets/spriites/gdgamelab gamejam redcheckpoint.png" id="3_c45tw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_55jpe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_yqsag")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_c45tw")
+}],
+"loop": true,
+"name": &"red",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vc08m"]
+size = Vector2(68.5, 65.71348)
+
+[node name="checkpoint" type="Area2D" unique_id=854971487]
+script = ExtResource("1_vsimk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1826075884]
+position = Vector2(0, -86.00001)
+scale = Vector2(1.335, 1.335)
+sprite_frames = SubResource("SpriteFrames_55jpe")
+animation = &"red"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=323503706]
+position = Vector2(-1, -44.13625)
+scale = Vector2(1.335, 1.335)
+shape = SubResource("RectangleShape2D_vc08m")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1162574064]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

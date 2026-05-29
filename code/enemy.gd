@@ -105,3 +105,7 @@ func handle_gravity(delta: float) -> void:
 
 func _on_chase_timeout() -> void:
 	current_state = states.WANDER
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.
