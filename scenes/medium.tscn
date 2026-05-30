@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bbmhx1xagrw85"]
+
+[ext_resource type="Script" uid="uid://cuj41bnv27q7d" path="res://code/medium.gd" id="1_2u7nh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lq06n"]
+size = Vector2(135.5, 14)
+
+[node name="heavy" type="Area2D" unique_id=295185498]
+script = ExtResource("1_2u7nh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1584226217]
+position = Vector2(67.75, 7)
+shape = SubResource("RectangleShape2D_lq06n")
+
+[node name="Timer" type="Timer" parent="." unique_id=162709857]
+wait_time = 0.6
+one_shot = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

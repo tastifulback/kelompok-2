@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://duvak05pswk35"]
+
+[ext_resource type="Script" uid="uid://ob76epljt3jk" path="res://code/medium_spawner.gd" id="1_3rksr"]
+
+[node name="rangedSpawner" type="Node2D" unique_id=1590068122]
+script = ExtResource("1_3rksr")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=377841929]

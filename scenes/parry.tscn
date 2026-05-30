@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://uqebod7rsle3"]
+
+[ext_resource type="Script" uid="uid://b2xopi0nstcoh" path="res://code/parry.gd" id="1_32kfd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3x0vv"]
+size = Vector2(42, 55)
+
+[node name="parry" type="Area2D" unique_id=221141341]
+script = ExtResource("1_32kfd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2133093923]
+position = Vector2(21, 0.5)
+shape = SubResource("RectangleShape2D_3x0vv")
+
+[node name="Timer" type="Timer" parent="." unique_id=772666938]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

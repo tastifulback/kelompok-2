@@ -24,7 +24,7 @@ func _process(_delta: float) -> void:
 	if ray.is_colliding():
 		var target  = ray.get_collider()
 		print(target)
-		if target is ranged or target is hook:
+		if target is ranged or target is hook or target is heavyEnemy or target is mediumEnemy:
 			 
 			var hit_global = ray.get_collision_point()
 			

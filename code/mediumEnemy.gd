@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name heavyEnemy
+class_name mediumEnemy
 
 @export var speed := 50.0
 @export var CHASE_SPEED := 300
@@ -10,7 +10,7 @@ var GRAVITY : float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var direction : Vector2
 var right_bounds : Vector2
 var left_bounds : Vector2
-@onready var atack = preload("uid://ck60tyl237tuc")
+@onready var atack = preload("uid://bbmhx1xagrw85")
 @onready var collider
 @onready var ray_cast_horizontal: RayCast2D = $Sprite2D/RayCastHorizontal
 @onready var ray_cast_down: RayCast2D = $Sprite2D/RayCastDown
@@ -94,13 +94,13 @@ func change_direction() -> void:
 			sprite_2d.flip_h = true
 			ray_cast_horizontal.target_position = Vector2(125, 0)
 			ray_cast_wall.target_position = Vector2(25, 0)
-			rayatk.target_position = Vector2(17, 0)
+			rayatk.target_position = Vector2(27, 0)
 			ray_cast_down.position.x = 100
 		else:
 			sprite_2d.flip_h = false
 			ray_cast_horizontal.target_position = Vector2(-125, 0)
 			ray_cast_wall.target_position = Vector2(-25, 0)
-			rayatk.target_position = Vector2(-17, 0)
+			rayatk.target_position = Vector2(-27, 0)
 			ray_cast_down.position.x = -100
 
 func flip_enemy():
@@ -108,16 +108,16 @@ func flip_enemy():
 	if sprite_2d.flip_h:
 		ray_cast_horizontal.target_position = Vector2(125, 0)
 		ray_cast_wall.target_position = Vector2(25, 0)
-		rayatk.target_position = Vector2(17, 0)
+		rayatk.target_position = Vector2(27, 0)
 		ray_cast_down.position.x = 100
 	else:
 		ray_cast_horizontal.target_position = Vector2(-125, 0)
 		ray_cast_wall.target_position = Vector2(-25, 0)
-		rayatk.target_position = Vector2(-17, 0)
+		rayatk.target_position = Vector2(-27, 0)
 		ray_cast_down.position.x = -100
 
 func attack() -> void:
-	var atk : heavyAttack = atack.instantiate()
+	var atk : medium = atack.instantiate()
 	atk.position = to_local(position)
 	atk.attackDone.connect(attackDone)
 	if sprite_2d.flip_h:
@@ -145,7 +145,8 @@ func _on_chase_timeout() -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body is player :
+	if body is player:
+		print("dead")
 		emit_signal("dead")
 		queue_free()
 		
@@ -159,6 +160,7 @@ func _on_attack_wait_timeout() -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area is deadzone :
+	if area is deadzone:
+		print("dead")
 		emit_signal("dead")
 		queue_free()

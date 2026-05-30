@@ -2,14 +2,17 @@ extends CharacterBody2D
 class_name player
 @onready var dashTime = $dashTime
 @onready var reloadTime = $reloadTime
-@export var reloadHowMany = 5
+@export var reloadHowMany : int = 5
 @onready var STRING = preload("uid://dq7vh3iffl7ms")
+@onready var PARRY = preload("uid://uqebod7rsle3")
 @onready var enemyList = PackedVector2Array([])
-@onready var enemyN = 0
-@export var SPEED = 350.0
-@export var JUMP_VELOCITY = -500.0
+@onready var enemyN : int = 0
+@export var SPEED : float = 350.0
+@export var JUMP_VELOCITY: float = -500.0
 @onready var dashAllow : bool = true
 @onready var respawn : Vector2
+@onready var directionP : float
+@onready var doneParry : bool = false
 signal dead
 
 func _physics_process(delta: float) -> void:
@@ -34,7 +37,10 @@ func _physics_process(delta: float) -> void:
 		if reloadTime.is_stopped():
 			Engine.time_scale = 0.0
 			stringSpawn()
-			
+	if Input.is_action_just_pressed("parry"):
+		if doneParry ==false:
+			parrying()
+			doneParry = true
 		
 	if Input.is_action_just_released("attack"):
 		Engine.time_scale = 1.0
@@ -45,9 +51,11 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("a", "d")
+	if Input.is_action_just_pressed("a"):
+		directionP = -1
+	if Input.is_action_just_pressed("d"):
+		directionP = 1
 	if direction:
-		
-			
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
@@ -102,13 +110,37 @@ func _on_reload_time_timeout() -> void:
 		reloadTime.stop()
 		reloadHowMany = 5
 		
-
-
+func parrying()-> void:
+	var p : parry = PARRY.instantiate()
+	p.position = to_local(position)
+	if directionP > 0:
+		p.scale.x = 1
+	else:
+		p.scale.x = -1
+	p.parryDone.connect(doneParrying)
+	p.area_entered.connect(_on_parry_area_entered)
+	add_child(p)
+	
+	
+	
+	
+func doneParrying() -> void:
+	if doneParry == true:
+		doneParry = false
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area is checkPoint:
 		area.currCheckpoint.connect(respawnPlace)
-	if area is Bullet or area is deadzone:
-		reloadHowMany = 5
+	if doneParry == false:
+		if area is Bullet or area is deadzone or area is heavyAttack or area is medium:
+			reloadHowMany = 5
+			reloadTime.stop()
+			SPEED = 350.0
+			emit_signal("dead")
+			position = respawn
+
+
+func _on_parry_area_entered(area: Area2D) -> void:
+	if area is medium or area is Bullet or area is heavyAttack:
 		reloadTime.stop()
-		emit_signal("dead")
-		position = respawn
+		reloadHowMany = 5
+		
