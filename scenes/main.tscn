@@ -300,6 +300,8 @@ texture_region_size = Vector2i(64, 64)
 5:2/0 = 0
 5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-31.890799, -31.989079, 32.087357, -31.989079, 32.12268, 32.041462, -32.04146, 32.447563)
 5:0/0 = 0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-31.960241, 17.015682, 32.047554, 17.302113, 32.04146, 32.041462, -31.960241, 32.041462)
 8:2/0 = 0
 8:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-31.890799, -31.989079, 32.087357, -31.989079, 32.087357, 0.14741516, -32.12268, 0.040610313)
 9:2/0 = 0
@@ -366,6 +368,7 @@ texture_region_size = Vector2i(64, 64)
 
 [sub_resource type="TileSet" id="TileSet_tipki"]
 physics_layer_0/collision_layer = 1
+physics_layer_1/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_tefeu")
 sources/1 = SubResource("TileSetAtlasSource_o6xl0")
 sources/2 = SubResource("TileSetAtlasSource_tipki")
