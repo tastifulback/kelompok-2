@@ -22,8 +22,6 @@ func _physics_process(delta: float) -> void:
 		dashAllow = true
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-		
-		
 	# Handle jump.
 	if Input.is_action_just_pressed("shift"):
 		if dashTime.is_stopped() and dashAllow:
@@ -62,7 +60,6 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-	
 	move_and_slide()
 
 func stringSpawn() ->void :
@@ -74,7 +71,6 @@ func stringSpawn() ->void :
 	Line.set_point_position(0, Vector2.ZERO) 
 	Line.set_point_position(1, Line.get_local_mouse_position())
 
-	
 func enemyListFunc(enemy):
 	enemyList.append(enemy)
 func enemyKill():
@@ -88,31 +84,21 @@ func enemyKill():
 		
 	enemyList.clear()
 
-	
-	
-
-
-
-
-
-
 func _on_dash_time_timeout() -> void:
 	dashTime.stop()
 	SPEED /= 3
-
 
 func _on_reload_time_timeout() -> void:
 	if reloadHowMany > 0:
 		print("reload")
 		reloadTime.start()
 		reloadHowMany -= 1
-		
-	
+
 	else: 
 		isReloading = false
 		reloadTime.stop()
 		reloadHowMany = 5
-		
+
 func parrying()-> void:
 	var p : parry = PARRY.instantiate()
 	p.position = to_local(position)
@@ -124,16 +110,12 @@ func parrying()-> void:
 	p.area_entered.connect(_on_parry_area_entered)
 	add_child(p)
 	
-	
-	
-	
 func doneParrying() -> void:
 	if doneParry == true:
 		doneParry = false
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area is checkPoint:
 		respawn = area.global_position
-		
 	if doneParry == false:
 		if area is Bullet or area is deadzone or area is heavyAttack or area is medium:
 			reloadHowMany = 5
@@ -142,12 +124,9 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 			SPEED = 350.0
 			emit_signal("dead")
 			position = respawn
-
-	
 	
 func _on_parry_area_entered(area: Area2D) -> void:
 	if area is medium or area is Bullet or area is heavyAttack:
 		reloadTime.stop()
 		isReloading = false
 		reloadHowMany = 5
-		
