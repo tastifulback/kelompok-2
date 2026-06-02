@@ -17,6 +17,5 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is player:
 		sprite.play("red")
-		Currpos = body.position
-		currCheckpoint.emit(Currpos)
+		
 	

@@ -3,6 +3,7 @@ class_name player
 @onready var dashTime = $dashTime
 @onready var reloadTime = $reloadTime
 @export var reloadHowMany : int = 5
+@onready var isReloading : bool = false
 @onready var STRING = preload("uid://dq7vh3iffl7ms")
 @onready var PARRY = preload("uid://uqebod7rsle3")
 @onready var enemyList = PackedVector2Array([])
@@ -43,10 +44,12 @@ func _physics_process(delta: float) -> void:
 			doneParry = true
 		
 	if Input.is_action_just_released("attack"):
-		Engine.time_scale = 1.0
-		reloadHowMany -= int(enemyList.size())
-		reloadTime.start()
-		enemyKill()
+		if isReloading == false:
+			Engine.time_scale = 1.0
+			reloadHowMany -= int(enemyList.size())
+			reloadTime.start()
+			isReloading = true
+			enemyKill()
 		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -90,8 +93,7 @@ func enemyKill():
 
 
 
-func respawnPlace(place : Vector2) -> void:
-	respawn = place
+
 
 
 func _on_dash_time_timeout() -> void:
@@ -107,6 +109,7 @@ func _on_reload_time_timeout() -> void:
 		
 	
 	else: 
+		isReloading = false
 		reloadTime.stop()
 		reloadHowMany = 5
 		
@@ -129,18 +132,22 @@ func doneParrying() -> void:
 		doneParry = false
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area is checkPoint:
-		area.currCheckpoint.connect(respawnPlace)
+		respawn = area.global_position
+		
 	if doneParry == false:
 		if area is Bullet or area is deadzone or area is heavyAttack or area is medium:
 			reloadHowMany = 5
 			reloadTime.stop()
+			isReloading = false
 			SPEED = 350.0
 			emit_signal("dead")
 			position = respawn
 
-
+	
+	
 func _on_parry_area_entered(area: Area2D) -> void:
 	if area is medium or area is Bullet or area is heavyAttack:
 		reloadTime.stop()
+		isReloading = false
 		reloadHowMany = 5
 		
