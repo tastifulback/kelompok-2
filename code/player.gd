@@ -52,10 +52,10 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("a", "d")
-	if Input.is_action_just_pressed("a"):
-		directionP = -1
-	if Input.is_action_just_pressed("d"):
+	if global_position < get_global_mouse_position():
 		directionP = 1
+	if global_position >= get_global_mouse_position():
+		directionP = -1
 	if direction:
 		velocity.x = direction * SPEED
 	else:

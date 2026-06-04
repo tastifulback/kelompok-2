@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dqg8sefmaeg6y" path="res://code/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://cnfeweppdkth1" path="res://assets/spriites/icon.svg" id="2_qhqgy"]
-[ext_resource type="PackedScene" uid="uid://uqebod7rsle3" path="res://scenes/parry.tscn" id="3_qhqgy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(118.85715, 128)
@@ -33,9 +32,6 @@ shape = SubResource("RectangleShape2D_dqkch")
 [node name="dashTime" type="Timer" parent="." unique_id=83906056]
 wait_time = 0.2
 
-[node name="parry" parent="." unique_id=221141341 instance=ExtResource("3_qhqgy")]
-
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="reloadTime" to="." method="_on_reload_time_timeout"]
 [connection signal="timeout" from="dashTime" to="." method="_on_dash_time_timeout"]
-[connection signal="area_entered" from="parry" to="." method="_on_parry_area_entered"]
