@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://cfn1swtr7w8f1"]
+
+[ext_resource type="Script" uid="uid://dvb70whannpi1" path="res://scenes/main_menu.gd" id="1_bqqt6"]
+[ext_resource type="Texture2D" uid="uid://bwg1qfyhwe3hd" path="res://assets/spriites/gdgamelab gamejam bg.png" id="1_ekxnf"]
+[ext_resource type="FontFile" uid="uid://dd7og71dtha5s" path="res://assets/spriites/Free/Menu/Text/font.ttf" id="2_bqqt6"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wu84c"]
+texture = ExtResource("1_ekxnf")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqqt6"]
+bg_color = Color(0.21960784, 0.07450981, 0.07450981, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wu84c"]
+bg_color = Color(0.48073405, 0.20187557, 0.20149264, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ln24"]
+bg_color = Color(0.33434513, 0.12928662, 0.12918076, 1)
+
+[node name="Control" type="Control" unique_id=1914282559]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bqqt6")
+
+[node name="Panel" type="Panel" parent="." unique_id=1456021285]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_wu84c")
+
+[node name="Label" type="Label" parent="." unique_id=1016697413]
+layout_mode = 0
+offset_left = 263.0
+offset_top = 205.0
+offset_right = 876.0
+offset_bottom = 293.0
+theme_override_fonts/font = ExtResource("2_bqqt6")
+theme_override_font_sizes/font_size = 50
+text = "QUIXOTIC SALVATION"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1639589902]
+layout_mode = 0
+offset_left = 476.0
+offset_top = 400.0
+offset_right = 676.0
+offset_bottom = 506.0
+theme_override_constants/separation = 20
+
+[node name="start" type="Button" parent="VBoxContainer" unique_id=1739131191]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wu84c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8ln24")
+text = "START"
+
+[node name="exit" type="Button" parent="VBoxContainer" unique_id=1240018914]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wu84c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8ln24")
+text = "EXIT"
+
+[connection signal="pressed" from="VBoxContainer/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/exit" to="." method="_on_exit_pressed"]
