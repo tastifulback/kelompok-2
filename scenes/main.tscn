@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://bix541p48pjj2"]
 
 [ext_resource type="PackedScene" uid="uid://dcqv8cssdy0do" path="res://scenes/player.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://cgt1kn504x4ww" path="res://code/main.gd" id="1_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://bahjb25vb0h1w" path="res://scenes/tile_map_layer.tscn" id="2_0wfyh"]
 [ext_resource type="Texture2D" uid="uid://p31eexgivsvm" path="res://assets/spriites/Free/Terrain/Terrain (16x16).png" id="3_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://so5gbljlsgec" path="res://assets/spriites/gdgamelab gamejam tileset.png" id="4_tbgi4"]
@@ -8,7 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://dfp2msmtu6asa" path="res://scenes/hookblock.tscn" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://binl2bf14o0rc" path="res://scenes/checkpoint.tscn" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://b80enrf30urhw" path="res://scenes/deadzone.tscn" id="8_tipki"]
-[ext_resource type="PackedScene" uid="uid://dj8qs3qhhcy0f" path="res://scenes/enemy.tscn" id="9_85g3d"]
+[ext_resource type="PackedScene" uid="uid://b63oexb5fadob" path="res://scenes/ranged_spawner.tscn" id="9_choun"]
+[ext_resource type="PackedScene" uid="uid://duvak05pswk35" path="res://scenes/medium_spawner.tscn" id="10_ya4ey"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tefeu"]
 texture = ExtResource("3_jyhfs")
@@ -376,6 +378,7 @@ sources/1 = SubResource("TileSetAtlasSource_o6xl0")
 sources/2 = SubResource("TileSetAtlasSource_tipki")
 
 [node name="Main" type="Node2D" unique_id=5145037]
+script = ExtResource("1_ya4ey")
 
 [node name="player" parent="." unique_id=145659285 instance=ExtResource("1_o5qli")]
 process_mode = 1
@@ -406,7 +409,7 @@ position = Vector2(2024, -112)
 
 [node name="checkpoint2" parent="checkpoint" unique_id=548903097 instance=ExtResource("7_o6xl0")]
 z_index = -1
-position = Vector2(-1768, 368)
+position = Vector2(-1944, 364)
 
 [node name="deadzone5" parent="." unique_id=1837753537 instance=ExtResource("8_tipki")]
 z_index = 1
@@ -418,6 +421,18 @@ scale = Vector2(0.05505364, 0.18926449)
 z_index = 1
 position = Vector2(2980, -626)
 scale = Vector2(0.036150627, 0.16277331)
+
+[node name="deadzone6" parent="." unique_id=496961453 instance=ExtResource("8_tipki")]
+z_index = 1
+position = Vector2(1662.0001, -632)
+rotation = 3.141453
+scale = Vector2(0.08113901, 15.568529)
+skew = 0.00013709068
+
+[node name="deadzone7" parent="." unique_id=709752361 instance=ExtResource("8_tipki")]
+z_index = 1
+position = Vector2(2800, -579)
+scale = Vector2(0.067803845, 10.232872)
 
 [node name="deadzone3" parent="." unique_id=1877299852 instance=ExtResource("8_tipki")]
 z_index = 1
@@ -434,12 +449,16 @@ position = Vector2(695.99994, 456)
 rotation = -3.1415923
 scale = Vector2(10.244549, -1.143706)
 
-[node name="enemy" parent="." unique_id=1698964350 instance=ExtResource("9_85g3d")]
-position = Vector2(1896, -520)
+[node name="rangedSpawner" parent="." unique_id=1590068122 instance=ExtResource("9_choun")]
+position = Vector2(2461, -395)
 
-[node name="enemy2" parent="." unique_id=191478789 instance=ExtResource("9_85g3d")]
-position = Vector2(2160, -728)
+[node name="rangedSpawner2" parent="." unique_id=773642614 instance=ExtResource("9_choun")]
+position = Vector2(1888, -534)
 
-[node name="enemy3" parent="." unique_id=1325185008 instance=ExtResource("9_85g3d")]
-position = Vector2(2453, -393)
-scale = Vector2(1.0000001, 1)
+[node name="rangedSpawner3" parent="." unique_id=1137770639 instance=ExtResource("9_choun")]
+position = Vector2(2149, -751)
+
+[node name="rangedSpawner4" parent="." unique_id=1094742034 instance=ExtResource("10_ya4ey")]
+position = Vector2(2757, -748)
+
+[connection signal="dead" from="player" to="." method="_on_player_dead"]

@@ -15,10 +15,10 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if  !body is ranged: 
+	if  body is player: 
 		queue_free()
 
 
 func _on_area_entered(area: Area2D) -> void:
-	if area is parry:
+	if area is parry or area is deadzone:
 		queue_free()
