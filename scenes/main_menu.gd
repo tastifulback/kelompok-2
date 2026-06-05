@@ -1,14 +1,20 @@
 extends Control
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
+var button_type = null
 func _on_start_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/main.tscn")
-
+	button_type = 'start'
+	$transition.show()
+	$transition/transition_time.start()
+	$transition/AnimationPlayer.play('fade_in')
 func _on_exit_pressed() -> void:
-	get_tree().quit()
+	button_type = 'exit'
+	$transition.show()
+	$transition/transition_time.start()
+	$transition/AnimationPlayer.play('fade_in')
+
+func _on_transition_time_timeout() -> void:
+	if button_type == 'start' :
+		get_tree().change_scene_to_file("res://Scenes/main.tscn")
+		
+	else :
+		get_tree().quit()

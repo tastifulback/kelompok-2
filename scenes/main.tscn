@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b80enrf30urhw" path="res://scenes/deadzone.tscn" id="8_tipki"]
 [ext_resource type="PackedScene" uid="uid://b63oexb5fadob" path="res://scenes/ranged_spawner.tscn" id="9_choun"]
 [ext_resource type="PackedScene" uid="uid://duvak05pswk35" path="res://scenes/medium_spawner.tscn" id="10_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://m2u44w8qao7r" path="res://scenes/transition.tscn" id="12_eb6dy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tefeu"]
 texture = ExtResource("3_jyhfs")
@@ -474,5 +475,11 @@ position = Vector2(2757, -748)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1301906871]
 environment = SubResource("Environment_ya4ey")
+
+[node name="transition" parent="." unique_id=1623041717 instance=ExtResource("12_eb6dy")]
+offset_left = -516.0
+offset_top = -97.0
+offset_right = 636.0
+offset_bottom = 551.0
 
 [connection signal="dead" from="player" to="." method="_on_player_dead"]

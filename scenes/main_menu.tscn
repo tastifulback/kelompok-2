@@ -2,13 +2,23 @@
 
 [ext_resource type="Script" uid="uid://dvb70whannpi1" path="res://scenes/main_menu.gd" id="1_bqqt6"]
 [ext_resource type="Texture2D" uid="uid://bwg1qfyhwe3hd" path="res://assets/spriites/gdgamelab gamejam bg.png" id="1_ekxnf"]
-[ext_resource type="FontFile" uid="uid://dd7og71dtha5s" path="res://assets/spriites/Free/Menu/Text/font.ttf" id="2_bqqt6"]
+[ext_resource type="Texture2D" uid="uid://chdxr4fstpxv2" path="res://assets/spriites/Free/Menu/Text/Title (2).png" id="3_wu84c"]
+[ext_resource type="PackedScene" uid="uid://m2u44w8qao7r" path="res://scenes/transition.tscn" id="4_wu84c"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wu84c"]
 texture = ExtResource("1_ekxnf")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqqt6"]
 bg_color = Color(0.21960784, 0.07450981, 0.07450981, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.18359044, 0.18359047, 0.1835903, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wu84c"]
 bg_color = Color(0.48073405, 0.20187557, 0.20149264, 1)
@@ -31,15 +41,9 @@ offset_right = 1152.0
 offset_bottom = 648.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_wu84c")
 
-[node name="Label" type="Label" parent="." unique_id=1016697413]
-layout_mode = 0
-offset_left = 263.0
-offset_top = 205.0
-offset_right = 876.0
-offset_bottom = 293.0
-theme_override_fonts/font = ExtResource("2_bqqt6")
-theme_override_font_sizes/font_size = 50
-text = "QUIXOTIC SALVATION"
+[node name="Title(2)" type="Sprite2D" parent="." unique_id=700664595]
+position = Vector2(576, 250)
+texture = ExtResource("3_wu84c")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1639589902]
 layout_mode = 0
@@ -65,5 +69,16 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_wu84c")
 theme_override_styles/hover = SubResource("StyleBoxFlat_8ln24")
 text = "EXIT"
 
+[node name="transition" parent="." unique_id=1623041717 instance=ExtResource("4_wu84c")]
+visible = false
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1597.0
+offset_bottom = 880.0
+
+[node name="transition_time" type="Timer" parent="transition" unique_id=630653155]
+
 [connection signal="pressed" from="VBoxContainer/start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/exit" to="." method="_on_exit_pressed"]
+[connection signal="timeout" from="transition/transition_time" to="." method="_on_transition_time_timeout"]
