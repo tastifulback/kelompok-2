@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://eymisbhba5vi" path="res://assets/spriites/front gdgamelab gamejam bg.png" id="4_2oy3k"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" unique_id=2086612330]
-scale = Vector2(1.48, 1.48)
-transform = Transform2D(1.48, 0, 0, 1.48, 0, 0)
+scale = Vector2(1.675, 1.675)
+transform = Transform2D(1.675, 0, 0, 1.675, 0, 0)
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="." unique_id=1826370809]
 position = Vector2(-2, 89)
