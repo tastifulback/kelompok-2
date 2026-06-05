@@ -17,11 +17,13 @@ class_name player
 @onready var respawn : Vector2
 @onready var directionP : float
 @onready var doneParry : bool = false
+@onready var isATK : bool = false
 signal musicEnd
 signal dead
 
 func _ready() -> void:
 	reloadGraphic.play("0")
+	
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if is_on_floor():
@@ -50,6 +52,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_released("attack"):
 		if isReloading == false:
 			stringMusic.stop()
+			isATK = true
 			reloadGraphic.play(str(int(reloadHowMany - int(enemyList.size()))))
 			Engine.time_scale = 1.0
 			reloadHowMany -= int(enemyList.size())
@@ -94,7 +97,7 @@ func enemyKill():
 			tween.tween_property(self, "global_position", enemyList[i],0.18 )
 			
 	enemyList.clear()
-	
+	isATK = false
 
 func _on_dash_time_timeout() -> void:
 	dashTime.stop()
@@ -132,7 +135,7 @@ func doneParrying() -> void:
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area is checkPoint:
 		respawn = area.global_position
-	if doneParry == false:
+	if doneParry == false and isATK == false:
 		if area is Bullet or area is deadzone or area is heavyAttack or area is medium:
 			reloadHowMany = 5
 			reloadGraphic.play("0")
