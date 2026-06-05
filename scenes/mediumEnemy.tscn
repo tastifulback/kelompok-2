@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cldhdshi8tikd"]
 
 [ext_resource type="Script" uid="uid://dde5a0ntbi6h" path="res://code/mediumEnemy.gd" id="1_kg0t2"]
-[ext_resource type="Texture2D" uid="uid://cnfeweppdkth1" path="res://assets/spriites/icon.svg" id="2_bia73"]
+[ext_resource type="Texture2D" uid="uid://5i3amtiljjam" path="res://assets/spriites/enemies/gdgamelab gamejam enemies3.png" id="2_kg0t2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_md0e3"]
 
@@ -16,8 +16,9 @@ scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_md0e3")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1575937655]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_bia73")
+position = Vector2(0.50000095, 0.50000095)
+scale = Vector2(0.953125, 0.953125)
+texture = ExtResource("2_kg0t2")
 
 [node name="RayCastHorizontal" type="RayCast2D" parent="Sprite2D" unique_id=669753106]
 scale = Vector2(3, 3)

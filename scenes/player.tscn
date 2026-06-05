@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dcqv8cssdy0do"]
 
 [ext_resource type="Script" uid="uid://dqg8sefmaeg6y" path="res://code/player.gd" id="1_g2els"]
-[ext_resource type="Texture2D" uid="uid://cnfeweppdkth1" path="res://assets/spriites/icon.svg" id="2_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://bumf1gl6ak7y6" path="res://assets/spriites/enemies/gdgamelab gamejam enemies1.png" id="2_qhqgy"]
 [ext_resource type="AudioStream" uid="uid://bp0bokvlhphga" path="res://assets/SFX/New_Project (3).mp3" id="3_qhqgy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
@@ -20,7 +20,8 @@ scale = Vector2(0.21875, 0.3125)
 shape = SubResource("RectangleShape2D_g2els")
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=390944112]
-scale = Vector2(0.21875, 0.3125)
+position = Vector2(1.1920929e-07, 0.25000072)
+scale = Vector2(0.4375, 0.63281244)
 texture = ExtResource("2_qhqgy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1181278723]

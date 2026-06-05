@@ -514,10 +514,8 @@ position = Vector2(2149, -751)
 [node name="rangedSpawner4" parent="." unique_id=1094742034 instance=ExtResource("10_ya4ey")]
 position = Vector2(2757, -748)
 
-<<<<<<< Updated upstream
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1301906871]
 environment = SubResource("Environment_ya4ey")
-=======
 [node name="rangedSpawner2" parent="." unique_id=1729086307 instance=ExtResource("10_ya4ey")]
 position = Vector2(1889, -546)
 
@@ -526,6 +524,5 @@ position = Vector2(4688, -536)
 
 [node name="rangedSpawner8" parent="." unique_id=1565139707 instance=ExtResource("9_choun")]
 position = Vector2(3798, -739)
->>>>>>> Stashed changes
 
 [connection signal="dead" from="player" to="." method="_on_player_dead"]
