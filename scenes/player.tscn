@@ -69,7 +69,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ur7pv"]
-size = Vector2(70, 75.5)
+size = Vector2(103, 109)
 
 [node name="player" type="CharacterBody2D" unique_id=1879648505]
 script = ExtResource("1_g2els")
@@ -108,6 +108,7 @@ animation = &"5"
 script = ExtResource("10_y4r1p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1471975023]
+position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_ur7pv")
 
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
