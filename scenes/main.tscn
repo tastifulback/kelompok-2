@@ -519,6 +519,12 @@ position = Vector2(4674, -607.99994)
 rotation = 3.1415918
 scale = Vector2(0.033366837, 0.2530428)
 
+[node name="deadzone15" parent="." unique_id=1103618286 instance=ExtResource("8_tipki")]
+z_index = 1
+position = Vector2(4949.9995, -560)
+rotation = 3.1415918
+scale = Vector2(0.055235654, 0.2530428)
+
 [node name="deadzone2" parent="." unique_id=135943079 instance=ExtResource("8_tipki")]
 position = Vector2(1394.9998, -345)
 scale = Vector2(0.033314683, -0.11953397)
