@@ -105,7 +105,7 @@ func _on_dash_time_timeout() -> void:
 	SPEED = 350
 
 func _on_reload_time_timeout() -> void:
-	if reloadHowMany > 0:
+	if reloadHowMany > 1:
 		reloadTime.start()
 		reloadHowMany -= 1
 		reloadGraphic.play(str(reloadHowMany))
