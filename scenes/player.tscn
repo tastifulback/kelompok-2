@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dinccafopcgpy" path="res://assets/spriites/reload/gdgamelab gamejam bar3.png" id="7_3v2ag"]
 [ext_resource type="Texture2D" uid="uid://btfesum8cuf5u" path="res://assets/spriites/reload/gdgamelab gamejam bar4.png" id="8_jej6c"]
 [ext_resource type="Texture2D" uid="uid://c1ymujr67p7ir" path="res://assets/spriites/reload/gdgamelab gamejam bar5.png" id="9_f1ej7"]
+[ext_resource type="Script" uid="uid://cfutico8vn8x6" path="res://code/atack_area.gd" id="10_y4r1p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(118.85715, 128)
@@ -67,6 +68,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2wvv"]
+size = Vector2(67.5, 81.75)
+
 [node name="player" type="CharacterBody2D" unique_id=1879648505]
 script = ExtResource("1_g2els")
 
@@ -99,6 +103,13 @@ stream = ExtResource("3_qhqgy")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2073975490]
 sprite_frames = SubResource("SpriteFrames_oprun")
 animation = &"5"
+
+[node name="area" type="Area2D" parent="." unique_id=542960033]
+script = ExtResource("10_y4r1p")
+metadata/_custom_type_script = "uid://cfutico8vn8x6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area" unique_id=30402584]
+shape = SubResource("RectangleShape2D_d2wvv")
 
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="reloadTime" to="." method="_on_reload_time_timeout"]

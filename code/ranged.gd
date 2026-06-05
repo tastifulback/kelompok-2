@@ -138,7 +138,7 @@ func onHit() -> bool:
 
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
-	if area is deadzone:
+	if area is deadzone or area is atkArea:
 		emit_signal("dead")
 		queue_free()
 
