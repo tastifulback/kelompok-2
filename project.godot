@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="kelompok2 game"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="uid://cfn1swtr7w8f1"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://assets/spriites/icon.svg"
 
