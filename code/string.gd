@@ -23,7 +23,7 @@ func _process(_delta: float) -> void:
 	ray.force_raycast_update()
 	if ray.is_colliding():
 		var target  = ray.get_collider()
-		print(target)
+		
 		if target is ranged or target is hook or target is heavyEnemy or target is mediumEnemy:
 			 
 			var hit_global = ray.get_collision_point()
@@ -36,7 +36,7 @@ func _process(_delta: float) -> void:
 				enemies.emit(hit_global)
 				add_point(to_local(hit_global),lastIndex)
 				ray.add_exception(target)
-				print("added")
+				
 		if target is tiles :
 			if tileHit == false:
 				var hit_global = ray.get_collision_point()

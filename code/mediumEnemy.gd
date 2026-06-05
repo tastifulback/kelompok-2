@@ -154,7 +154,7 @@ func _on_attack_wait_timeout() -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area is deadzone:
+	if area is deadzone or area is atkArea:
 		print("dead")
 		emit_signal("dead")
 		queue_free()
