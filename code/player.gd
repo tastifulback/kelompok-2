@@ -6,7 +6,9 @@ class_name player
 @onready var isReloading : bool = false
 @onready var STRING = preload("uid://dq7vh3iffl7ms")
 @onready var PARRY = preload("uid://uqebod7rsle3")
+
 @onready var stringMusic = $AudioStreamPlayer2D
+@onready var reloadGraphic = $AnimatedSprite2D
 @onready var enemyList = PackedVector2Array([])
 @onready var enemyN : int = 0
 @export var SPEED : float = 350.0
@@ -18,6 +20,8 @@ class_name player
 signal musicEnd
 signal dead
 
+func _ready() -> void:
+	reloadGraphic.play("0")
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if is_on_floor():
@@ -45,6 +49,8 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_just_released("attack"):
 		if isReloading == false:
+			stringMusic.stop()
+			reloadGraphic.play(str(int(reloadHowMany - int(enemyList.size()))))
 			Engine.time_scale = 1.0
 			reloadHowMany -= int(enemyList.size())
 			reloadTime.start()
@@ -80,13 +86,15 @@ func enemyListFunc(enemy):
 func enemyKill():
 	if !enemyList.is_empty():
 		var tween= create_tween()
+
 		tween.set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)	
 		for i in range(enemyList.size()):
 			
 			
 			tween.tween_property(self, "global_position", enemyList[i],0.18 )
-		
+			
 	enemyList.clear()
+	
 
 func _on_dash_time_timeout() -> void:
 	dashTime.stop()
@@ -97,11 +105,13 @@ func _on_reload_time_timeout() -> void:
 		print("reload")
 		reloadTime.start()
 		reloadHowMany -= 1
+		reloadGraphic.play(str(reloadHowMany))
 
 	else: 
 		isReloading = false
 		reloadTime.stop()
 		reloadHowMany = 5
+		reloadGraphic.play("0")
 
 func parrying()-> void:
 	var p : parry = PARRY.instantiate()
@@ -125,15 +135,18 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 	if doneParry == false:
 		if area is Bullet or area is deadzone or area is heavyAttack or area is medium:
 			reloadHowMany = 5
+			reloadGraphic.play("0")
 			reloadTime.stop()
 			isReloading = false
 			SPEED = 350
+			stringMusic.stop()
 			emit_signal("dead")
 			position = respawn
 	
 func _on_parry_area_entered(area: Area2D) -> void:
 	if area is medium or area is Bullet or area is heavyAttack:
 		reloadTime.stop()
+		reloadGraphic.play("0")
 		isReloading = false
 		reloadHowMany = 5
 
@@ -141,6 +154,7 @@ func _on_parry_area_entered(area: Area2D) -> void:
 func _on_audio_stream_player_2d_finished() -> void:
 	if isReloading == false:
 			emit_signal("musicEnd")
+			reloadGraphic.play(str(int(reloadHowMany - int(enemyList.size()))))
 			Engine.time_scale = 1.0
 			reloadHowMany -= int(enemyList.size())
 			reloadTime.start()

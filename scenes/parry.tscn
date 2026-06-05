@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://uqebod7rsle3"]
 
 [ext_resource type="Script" uid="uid://b2xopi0nstcoh" path="res://code/parry.gd" id="1_32kfd"]
+[ext_resource type="Texture2D" uid="uid://crks84m50ycxu" path="res://assets/spriites/25.png" id="2_dp8ib"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3x0vv"]
 size = Vector2(42, 55)
@@ -15,5 +16,11 @@ shape = SubResource("RectangleShape2D_3x0vv")
 [node name="Timer" type="Timer" parent="." unique_id=772666938]
 wait_time = 0.5
 one_shot = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=600006094]
+position = Vector2(13.002034, 1.3566034)
+rotation = 1.5692977
+scale = Vector2(0.11779644, 0.4225924)
+texture = ExtResource("2_dp8ib")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

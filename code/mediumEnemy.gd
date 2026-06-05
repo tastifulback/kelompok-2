@@ -92,29 +92,29 @@ func change_direction() -> void:
 		direction.y = 0
 		if direction.x > 0:
 			sprite_2d.flip_h = true
-			ray_cast_horizontal.target_position = Vector2(125, 0)
-			ray_cast_wall.target_position = Vector2(25, 0)
-			rayatk.target_position = Vector2(27, 0)
-			ray_cast_down.position.x = 100
+			ray_cast_horizontal.target_position = Vector2(100, 0)
+			ray_cast_wall.target_position = Vector2(20, 0)
+			rayatk.target_position = Vector2(24, 0)
+			ray_cast_down.position.x = 30
 		else:
 			sprite_2d.flip_h = false
-			ray_cast_horizontal.target_position = Vector2(-125, 0)
-			ray_cast_wall.target_position = Vector2(-25, 0)
-			rayatk.target_position = Vector2(-27, 0)
-			ray_cast_down.position.x = -100
+			ray_cast_horizontal.target_position = Vector2(-100, 0)
+			ray_cast_wall.target_position = Vector2(-10, 0)
+			rayatk.target_position = Vector2(-20, 0)
+			ray_cast_down.position.x = -30
 
 func flip_enemy():
 	sprite_2d.flip_h = !sprite_2d.flip_h
 	if sprite_2d.flip_h:
-		ray_cast_horizontal.target_position = Vector2(125, 0)
-		ray_cast_wall.target_position = Vector2(25, 0)
-		rayatk.target_position = Vector2(27, 0)
-		ray_cast_down.position.x = 100
+		ray_cast_horizontal.target_position = Vector2(100, 0)
+		ray_cast_wall.target_position = Vector2(10, 0)
+		rayatk.target_position = Vector2(20, 0)
+		ray_cast_down.position.x = 30
 	else:
-		ray_cast_horizontal.target_position = Vector2(-125, 0)
-		ray_cast_wall.target_position = Vector2(-25, 0)
-		rayatk.target_position = Vector2(-27, 0)
-		ray_cast_down.position.x = -100
+		ray_cast_horizontal.target_position = Vector2(-100, 0)
+		ray_cast_wall.target_position = Vector2(-10, 0)
+		rayatk.target_position = Vector2(-20, 0)
+		ray_cast_down.position.x = -30
 
 func attack() -> void:
 	var atk : medium = atack.instantiate()
@@ -144,12 +144,6 @@ func _on_chase_timeout() -> void:
 	current_state = states.WANDER
 
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body is player:
-		print("dead")
-		emit_signal("dead")
-		queue_free()
-		
 
 func attackDone() -> void:
 	hasAtk = false
@@ -161,6 +155,13 @@ func _on_attack_wait_timeout() -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area is deadzone:
+		print("dead")
+		emit_signal("dead")
+		queue_free()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is player:
 		print("dead")
 		emit_signal("dead")
 		queue_free()

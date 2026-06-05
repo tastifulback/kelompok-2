@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b80enrf30urhw" path="res://scenes/deadzone.tscn" id="8_tipki"]
 [ext_resource type="PackedScene" uid="uid://b63oexb5fadob" path="res://scenes/ranged_spawner.tscn" id="9_choun"]
 [ext_resource type="PackedScene" uid="uid://duvak05pswk35" path="res://scenes/medium_spawner.tscn" id="10_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://cec7csuhbij3j" path="res://scenes/victoryCheck.tscn" id="12_eb6dy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tefeu"]
 texture = ExtResource("3_jyhfs")
@@ -446,11 +447,6 @@ position = Vector2(-1944, 364)
 z_index = -1
 position = Vector2(1422, -6)
 
-[node name="checkpoint5" parent="checkpoint" unique_id=431465834 instance=ExtResource("7_o6xl0")]
-z_index = -1
-position = Vector2(5354.0005, -1557)
-scale = Vector2(2.0134063, 2.0134063)
-
 [node name="checkpoint4" parent="checkpoint" unique_id=542869258 instance=ExtResource("7_o6xl0")]
 z_index = -1
 position = Vector2(3007, -199)
@@ -570,5 +566,8 @@ position = Vector2(6520, -1328)
 
 [node name="rangedSpawner10" parent="." unique_id=335110310 instance=ExtResource("10_ya4ey")]
 position = Vector2(6091, -1544)
+
+[node name="checkpoint2" parent="." unique_id=2079518633 instance=ExtResource("12_eb6dy")]
+position = Vector2(8091.9995, -1411)
 
 [connection signal="dead" from="player" to="." method="_on_player_dead"]

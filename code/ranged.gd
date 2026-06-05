@@ -75,13 +75,13 @@ func change_direction() -> void:
 		if direction.x > 0:
 			sprite_2d.flip_h = true
 			
-			ray_cast_wall.target_position = Vector2(25, 0)
-			ray_cast_down.position.x = 100
+			ray_cast_wall.target_position = Vector2(15, 0)
+			ray_cast_down.position.x = 20
 		else:
 			sprite_2d.flip_h = false
 			
-			ray_cast_wall.target_position = Vector2(-25, 0)
-			ray_cast_down.position.x = -100
+			ray_cast_wall.target_position = Vector2(-15, 0)
+			ray_cast_down.position.x = -20
 		if reload.is_stopped():
 			bulletspawn()
 			reload.start()
@@ -90,12 +90,12 @@ func flip_enemy():
 	sprite_2d.flip_h = !sprite_2d.flip_h
 	if sprite_2d.flip_h:
 		
-		ray_cast_wall.target_position = Vector2(25, 0)
-		ray_cast_down.position.x = 100
+		ray_cast_wall.target_position = Vector2(15, 0)
+		ray_cast_down.position.x = 20
 	else:
 		
-		ray_cast_wall.target_position = Vector2(-25, 0)
-		ray_cast_down.position.x = -100
+		ray_cast_wall.target_position = Vector2(-15, 0)
+		ray_cast_down.position.x = -20
 
 func handle_gravity(delta: float) -> void:
 	if not is_on_floor():
@@ -134,7 +134,18 @@ func onHit() -> bool:
 	
 
 
+
+
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	if area is deadzone:
+		print("dead")
+		emit_signal("dead")
+		queue_free()
+
+
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body is player:
+		print("dead")
 		emit_signal("dead")
 		queue_free()

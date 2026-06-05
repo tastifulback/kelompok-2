@@ -3,12 +3,69 @@
 [ext_resource type="Script" uid="uid://dqg8sefmaeg6y" path="res://code/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://bumf1gl6ak7y6" path="res://assets/spriites/enemies/gdgamelab gamejam enemies1.png" id="2_qhqgy"]
 [ext_resource type="AudioStream" uid="uid://bp0bokvlhphga" path="res://assets/SFX/New_Project (3).mp3" id="3_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://bn2lbc48uunl1" path="res://assets/spriites/reload/gdgamelab gamejam bar0.png" id="4_ur7pv"]
+[ext_resource type="Texture2D" uid="uid://dlkuum0itegrm" path="res://assets/spriites/reload/gdgamelab gamejam bar1.png" id="5_y4r1p"]
+[ext_resource type="Texture2D" uid="uid://8p64nnl8lljn" path="res://assets/spriites/reload/gdgamelab gamejam bar2.png" id="6_d2wvv"]
+[ext_resource type="Texture2D" uid="uid://dinccafopcgpy" path="res://assets/spriites/reload/gdgamelab gamejam bar3.png" id="7_3v2ag"]
+[ext_resource type="Texture2D" uid="uid://btfesum8cuf5u" path="res://assets/spriites/reload/gdgamelab gamejam bar4.png" id="8_jej6c"]
+[ext_resource type="Texture2D" uid="uid://c1ymujr67p7ir" path="res://assets/spriites/reload/gdgamelab gamejam bar5.png" id="9_f1ej7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(118.85715, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
 size = Vector2(28, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oprun"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_f1ej7")
+}],
+"loop": true,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_jej6c")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_3v2ag")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_d2wvv")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_y4r1p")
+}],
+"loop": true,
+"name": &"4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ur7pv")
+}],
+"loop": true,
+"name": &"5",
+"speed": 5.0
+}]
 
 [node name="player" type="CharacterBody2D" unique_id=1879648505]
 script = ExtResource("1_g2els")
@@ -37,6 +94,10 @@ wait_time = 0.2
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=982860628]
 process_mode = 1
 stream = ExtResource("3_qhqgy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2073975490]
+sprite_frames = SubResource("SpriteFrames_oprun")
+animation = &"5"
 
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="reloadTime" to="." method="_on_reload_time_timeout"]
