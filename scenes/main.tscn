@@ -377,6 +377,17 @@ sources/0 = SubResource("TileSetAtlasSource_tefeu")
 sources/1 = SubResource("TileSetAtlasSource_o6xl0")
 sources/2 = SubResource("TileSetAtlasSource_tipki")
 
+[sub_resource type="Environment" id="Environment_ya4ey"]
+background_mode = 3
+background_color = Color(0.7764706, 0.07450981, 0.07450981, 1)
+glow_enabled = true
+glow_intensity = 0.5
+glow_bloom = 0.3
+glow_hdr_luminance_cap = 0.5
+adjustment_brightness = 0.84
+adjustment_contrast = 1.015
+adjustment_saturation = 1.2
+
 [node name="Main" type="Node2D" unique_id=5145037]
 script = ExtResource("1_ya4ey")
 
@@ -460,5 +471,8 @@ position = Vector2(2149, -751)
 
 [node name="rangedSpawner4" parent="." unique_id=1094742034 instance=ExtResource("10_ya4ey")]
 position = Vector2(2757, -748)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1301906871]
+environment = SubResource("Environment_ya4ey")
 
 [connection signal="dead" from="player" to="." method="_on_player_dead"]
