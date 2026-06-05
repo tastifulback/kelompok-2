@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("shift"):
 		if dashTime.is_stopped() and dashAllow:
-			SPEED *= 3
+			SPEED = 1050
 			dashTime.start()
 			dashAllow = false
 	if Input.is_action_just_pressed("w")  and is_on_floor() or Input.is_action_just_pressed("space") and is_on_floor():
@@ -90,7 +90,7 @@ func enemyKill():
 
 func _on_dash_time_timeout() -> void:
 	dashTime.stop()
-	SPEED /= 3
+	SPEED = 350
 
 func _on_reload_time_timeout() -> void:
 	if reloadHowMany > 0:
