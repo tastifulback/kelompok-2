@@ -85,6 +85,7 @@ texture = ExtResource("2_qhqgy")
 shape = SubResource("RectangleShape2D_dqkch")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=912547688]
+process_mode = 3
 
 [node name="reloadTime" type="Timer" parent="." unique_id=295764854]
 

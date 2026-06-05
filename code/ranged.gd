@@ -139,13 +139,11 @@ func onHit() -> bool:
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area is deadzone:
-		print("dead")
 		emit_signal("dead")
 		queue_free()
 
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body is player:
-		print("dead")
 		emit_signal("dead")
 		queue_free()

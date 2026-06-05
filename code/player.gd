@@ -26,6 +26,8 @@ func _ready() -> void:
 	
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
+	if Input.is_action_just_pressed("w")  and is_on_floor() or Input.is_action_just_pressed("space") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
 	if is_on_floor():
 		dashAllow = true
 	if not is_on_floor():
@@ -36,8 +38,7 @@ func _physics_process(delta: float) -> void:
 			SPEED = 1050
 			dashTime.start()
 			dashAllow = false
-	if Input.is_action_just_pressed("w")  and is_on_floor() or Input.is_action_just_pressed("space") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	
 	if Input.is_action_just_pressed("s") and !is_on_floor():
 		velocity.y = -JUMP_VELOCITY
 	if Input.is_action_just_pressed("attack"):
@@ -105,7 +106,6 @@ func _on_dash_time_timeout() -> void:
 
 func _on_reload_time_timeout() -> void:
 	if reloadHowMany > 0:
-		print("reload")
 		reloadTime.start()
 		reloadHowMany -= 1
 		reloadGraphic.play(str(reloadHowMany))
