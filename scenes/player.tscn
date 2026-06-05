@@ -68,8 +68,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2wvv"]
-size = Vector2(67.5, 81.75)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ur7pv"]
+size = Vector2(70, 75.5)
 
 [node name="player" type="CharacterBody2D" unique_id=1879648505]
 script = ExtResource("1_g2els")
@@ -104,12 +104,11 @@ stream = ExtResource("3_qhqgy")
 sprite_frames = SubResource("SpriteFrames_oprun")
 animation = &"5"
 
-[node name="area" type="Area2D" parent="." unique_id=542960033]
+[node name="Area2D" type="Area2D" parent="." unique_id=1018058249]
 script = ExtResource("10_y4r1p")
-metadata/_custom_type_script = "uid://cfutico8vn8x6"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="area" unique_id=30402584]
-shape = SubResource("RectangleShape2D_d2wvv")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1471975023]
+shape = SubResource("RectangleShape2D_ur7pv")
 
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="reloadTime" to="." method="_on_reload_time_timeout"]
