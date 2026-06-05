@@ -6,10 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://eymisbhba5vi" path="res://assets/spriites/front gdgamelab gamejam bg.png" id="4_2oy3k"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" unique_id=2086612330]
+scale = Vector2(1.48, 1.48)
+transform = Transform2D(1.48, 0, 0, 1.48, 0, 0)
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="." unique_id=1826370809]
 position = Vector2(-2, 89)
-motion_scale = Vector2(1, 0)
+motion_scale = Vector2(0, 0)
 motion_mirroring = Vector2(900, 0)
 
 [node name="BgGdgamelabGamejamBg" type="Sprite2D" parent="ParallaxLayer2" unique_id=1329628081]
@@ -21,7 +23,7 @@ texture = ExtResource("1_ljpgv")
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="." unique_id=837108330]
 z_index = -1
 position = Vector2(-2, 89)
-motion_scale = Vector2(1, 0)
+motion_scale = Vector2(0.55, 0)
 motion_mirroring = Vector2(2291.925, 0)
 
 [node name="BackGdgamelabGamejamBg" type="Sprite2D" parent="ParallaxLayer4" unique_id=1707576277]
@@ -36,7 +38,7 @@ texture = ExtResource("2_bpahb")
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="." unique_id=125324397]
 position = Vector2(-2, 89)
-motion_scale = Vector2(1.3, 0)
+motion_scale = Vector2(0.7, 0)
 motion_mirroring = Vector2(2291.925, 0)
 
 [node name="MidGdgamelabGamejamBg" type="Sprite2D" parent="ParallaxLayer3" unique_id=1240106924]
@@ -53,7 +55,7 @@ texture = ExtResource("3_qs7dk")
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="." unique_id=827525909]
 position = Vector2(1159, 59)
-motion_scale = Vector2(3, 0)
+motion_scale = Vector2(1, 0)
 motion_mirroring = Vector2(2291.925, 0)
 
 [node name="FrontGdgamelabGamejamBg" type="Sprite2D" parent="ParallaxLayer" unique_id=1295876904]

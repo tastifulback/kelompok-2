@@ -29,6 +29,7 @@ enum states {
 var current_state = states.WANDER
 
 func _ready():
+	
 	left_bounds = position + Vector2(-125, 0)
 	right_bounds = position + Vector2(125, 0)
 

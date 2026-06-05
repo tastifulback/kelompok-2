@@ -6,6 +6,7 @@ class_name player
 @onready var isReloading : bool = false
 @onready var STRING = preload("uid://dq7vh3iffl7ms")
 @onready var PARRY = preload("uid://uqebod7rsle3")
+@onready var stringMusic = $AudioStreamPlayer2D
 @onready var enemyList = PackedVector2Array([])
 @onready var enemyN : int = 0
 @export var SPEED : float = 350.0
@@ -14,6 +15,7 @@ class_name player
 @onready var respawn : Vector2
 @onready var directionP : float
 @onready var doneParry : bool = false
+signal musicEnd
 signal dead
 
 func _physics_process(delta: float) -> void:
@@ -28,7 +30,7 @@ func _physics_process(delta: float) -> void:
 			SPEED *= 3
 			dashTime.start()
 			dashAllow = false
-	if Input.is_action_just_pressed("w") and is_on_floor():
+	if Input.is_action_just_pressed("w") or Input.is_action_just_pressed("space") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	if Input.is_action_just_pressed("s") and !is_on_floor():
 		velocity.y = -JUMP_VELOCITY
@@ -63,9 +65,11 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func stringSpawn() ->void :
+	stringMusic.play()
 	var Line : stringer = STRING.instantiate()
-	get_parent().add_child(Line)
+	add_child(Line)
 	Line.ray.add_exception(self)
+	Line.ray.add_exception(Bullet)
 	Line.global_position = global_position
 	Line.enemies.connect(enemyListFunc)
 	Line.set_point_position(0, Vector2.ZERO) 
@@ -108,7 +112,9 @@ func parrying()-> void:
 		p.scale.x = -1
 	p.parryDone.connect(doneParrying)
 	p.area_entered.connect(_on_parry_area_entered)
+	
 	add_child(p)
+	
 	
 func doneParrying() -> void:
 	if doneParry == true:
@@ -121,7 +127,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 			reloadHowMany = 5
 			reloadTime.stop()
 			isReloading = false
-			SPEED = 350.0
+			SPEED = 350
 			emit_signal("dead")
 			position = respawn
 	
@@ -130,3 +136,13 @@ func _on_parry_area_entered(area: Area2D) -> void:
 		reloadTime.stop()
 		isReloading = false
 		reloadHowMany = 5
+
+
+func _on_audio_stream_player_2d_finished() -> void:
+	if isReloading == false:
+			emit_signal("musicEnd")
+			Engine.time_scale = 1.0
+			reloadHowMany -= int(enemyList.size())
+			reloadTime.start()
+			isReloading = true
+			enemyKill()
