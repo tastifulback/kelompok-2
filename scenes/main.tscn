@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://b63oexb5fadob" path="res://scenes/ranged_spawner.tscn" id="9_choun"]
 [ext_resource type="PackedScene" uid="uid://duvak05pswk35" path="res://scenes/medium_spawner.tscn" id="10_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://cec7csuhbij3j" path="res://scenes/victoryCheck.tscn" id="12_eb6dy"]
-[ext_resource type="PackedScene" path="res://scenes/transition.tscn" id="13_trceg"]
+[ext_resource type="PackedScene" uid="uid://c8ruqa5a5ucxt" path="res://scenes/transition.tscn" id="13_trceg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tefeu"]
 texture = ExtResource("3_jyhfs")
@@ -572,9 +572,9 @@ position = Vector2(6091, -1544)
 position = Vector2(8091.9995, -1411)
 
 [node name="transition" parent="." unique_id=1623041717 instance=ExtResource("13_trceg")]
-offset_left = -600.0
-offset_top = -200.0
-offset_right = 997.0
-offset_bottom = 680.0
+offset_left = -1108.0
+offset_top = -524.0
+offset_right = 1175.0
+offset_bottom = 912.0
 
 [connection signal="dead" from="player" to="." method="_on_player_dead"]

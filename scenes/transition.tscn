@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://m2u44w8qao7r"]
+[gd_scene format=3 uid="uid://c8ruqa5a5ucxt"]
 
 [sub_resource type="Animation" id="Animation_kg4ax"]
 length = 0.001
@@ -55,10 +55,10 @@ _data = {
 }
 
 [node name="transition" type="ColorRect" unique_id=1623041717]
-offset_left = -257.0
-offset_top = -113.0
-offset_right = 1340.0
-offset_bottom = 767.0
+offset_left = -14.0
+offset_top = 5.0
+offset_right = 1926.0
+offset_bottom = 1074.0
 color = Color(0, 0, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1554430627]

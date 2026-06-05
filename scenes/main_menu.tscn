@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bwg1qfyhwe3hd" path="res://assets/spriites/gdgamelab gamejam bg.png" id="1_ekxnf"]
 [ext_resource type="Texture2D" uid="uid://chdxr4fstpxv2" path="res://assets/spriites/Free/Menu/Text/Title (2).png" id="3_wu84c"]
 [ext_resource type="Texture2D" uid="uid://dq43nfotu0nk" path="res://assets/spriites/Free/Menu/Buttons/start_normal.png" id="4_oa1go"]
-[ext_resource type="PackedScene" path="res://scenes/transition.tscn" id="4_wu84c"]
+[ext_resource type="PackedScene" uid="uid://c8ruqa5a5ucxt" path="res://scenes/transition.tscn" id="4_wu84c"]
 [ext_resource type="Texture2D" uid="uid://dgkwrhvhg1e8w" path="res://assets/spriites/Free/Menu/Buttons/start_pressed.png" id="5_tbmy8"]
 [ext_resource type="Texture2D" uid="uid://bvffrsdkwyti3" path="res://assets/spriites/Free/Menu/Buttons/start_hover.png" id="6_jk1qb"]
 [ext_resource type="Texture2D" uid="uid://ckmykv4knawlb" path="res://assets/spriites/Free/Menu/Buttons/exit_normal.png" id="7_5dd4i"]
@@ -21,6 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.665, 1.665)
 script = ExtResource("1_bqqt6")
 
 [node name="Panel" type="Panel" parent="." unique_id=1456021285]
